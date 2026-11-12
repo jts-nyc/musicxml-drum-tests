@@ -1,0 +1,17 @@
+midi_note,name,line,head,voice,stem
+35,Bass Drum 2,8,normal,2,down
+36,Bass Drum,7,normal,2,down
+37,Cross-stick,3,slashed1,1,up
+38,Snare,3,normal,1,up
+41,Floor Tom,5,normal,1,up
+42,Closed Hi-Hat,-1,cross,1,up
+44,Pedal Hi-Hat,9,cross,2,down
+46,Open Hi-Hat,-1,xcircle,1,up
+47,Low Tom,2,normal,1,up
+49,Crash Cymbal,-2,cross,1,up
+50,High Tom,1,normal,1,up
+51,Ride Cymbal,0,cross,1,up
+52,China Cymbal,-3,normal,1,up
+53,Ride Bell,0,diamond,1,up
+55,Splash Cymbal,-4,cross,1,up
+57,Crash Cymbal 2,-3,cross,1,up

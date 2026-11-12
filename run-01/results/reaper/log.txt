@@ -1,0 +1,7 @@
+REAPER 7.85/macOS-arm64
+percussion-fixture-01.musicxml: InsertMedia=1 tracks=1 items=1 notes=76
+percussion-fixture-01.mxl: InsertMedia=1 tracks=1 items=1 notes=76
+control-no-instrument-refs.musicxml: InsertMedia=1 tracks=1 items=1 notes=76
+control-with-instrument-sound.musicxml: InsertMedia=1 tracks=1 items=1 notes=76
+percussion-fixture-01.mid: InsertMedia=1 tracks=1 items=1 notes=76
+done
