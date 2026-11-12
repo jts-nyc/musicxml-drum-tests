@@ -14,6 +14,7 @@ wrong drum on every note.
 | Run | Programs | Result |
 |---|---|---|
 | [run-01](run-01/REPORT.md), 2026-11-11 | MuseScore Studio 4.6.5 → REAPER 7.85, macOS | MuseScore reads its own export correctly: 76 of 76 notes. REAPER gets 0 of 76 from MusicXML and 76 of 76 from the same score's MIDI export. REAPER plays every note at its staff position read as a pitch. |
+| [run-02](run-02/REPORT.md), 2026-11-12 | MuseScore Studio 4.7.6 → REAPER 7.85, macOS | The same on every count. MuseScore: 76 of 76. REAPER: 0 of 76 from MusicXML, 76 of 76 from MIDI. The 4.7.6 MusicXML export differs from the 4.6.5 one only in layout numbers; the MIDI export is byte-identical. |
 
 Related: [musescore/MuseScore#22702](https://github.com/musescore/MuseScore/issues/22702).
 
@@ -22,8 +23,8 @@ Related: [musescore/MuseScore#22702](https://github.com/musescore/MuseScore/issu
 Each run folder has:
 
 - `REPORT.md`: the results;
-- `manifest.md`: the versions, the machine, and what was and wasn't tested;
-- `METHOD.md`: how to repeat it, or test another program;
+- `manifest.md`: the versions, the machine, and what was and wasn't tested (run-01; later runs point back to it);
+- `METHOD.md`: how to repeat it, or test another program (run-01);
 - `fixture/`: the score in every format, with `expected.csv` as the answer key;
 - `results/`: every output file, plus `events.csv`, which has one row per note;
 - `tools/`: the scripts, which need only the Python 3 standard library (plus a ReaScript for REAPER).

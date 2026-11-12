@@ -1,0 +1,77 @@
+bar,beat,midi_note,drum
+1,1.0,35,Bass Drum 2
+2,1.0,36,Bass Drum
+3,1.0,37,Cross-stick
+4,1.0,38,Snare
+5,1.0,41,Floor Tom
+6,1.0,42,Closed Hi-Hat
+7,1.0,44,Pedal Hi-Hat
+8,1.0,46,Open Hi-Hat
+9,1.0,47,Low Tom
+10,1.0,49,Crash Cymbal
+11,1.0,50,High Tom
+12,1.0,51,Ride Cymbal
+13,1.0,52,China Cymbal
+14,1.0,53,Ride Bell
+15,1.0,55,Splash Cymbal
+16,1.0,57,Crash Cymbal 2
+17,1.0,36,Bass Drum
+17,1.0,49,Crash Cymbal
+17,1.5,42,Closed Hi-Hat
+17,2.0,38,Snare
+17,2.0,42,Closed Hi-Hat
+17,2.5,42,Closed Hi-Hat
+17,3.0,36,Bass Drum
+17,3.0,42,Closed Hi-Hat
+17,3.5,42,Closed Hi-Hat
+17,4.0,38,Snare
+17,4.0,42,Closed Hi-Hat
+17,4.5,42,Closed Hi-Hat
+18,1.0,36,Bass Drum
+18,1.0,42,Closed Hi-Hat
+18,1.5,42,Closed Hi-Hat
+18,2.0,38,Snare
+18,2.0,42,Closed Hi-Hat
+18,2.5,42,Closed Hi-Hat
+18,3.0,36,Bass Drum
+18,3.0,42,Closed Hi-Hat
+18,3.5,42,Closed Hi-Hat
+18,4.0,38,Snare
+18,4.0,42,Closed Hi-Hat
+18,4.5,46,Open Hi-Hat
+19,1.0,36,Bass Drum
+19,1.0,51,Ride Cymbal
+19,2.0,38,Snare
+19,2.0,44,Pedal Hi-Hat
+19,2.0,51,Ride Cymbal
+19,3.0,36,Bass Drum
+19,3.0,51,Ride Cymbal
+19,4.0,38,Snare
+19,4.0,44,Pedal Hi-Hat
+19,4.0,51,Ride Cymbal
+20,1.0,36,Bass Drum
+20,1.0,38,Snare
+20,1.5,38,Snare
+20,2.0,50,High Tom
+20,2.5,50,High Tom
+20,3.0,36,Bass Drum
+20,3.0,47,Low Tom
+20,3.5,47,Low Tom
+20,4.0,41,Floor Tom
+20,4.5,41,Floor Tom
+21,1.0,38,Snare
+21,2.0,37,Cross-stick
+21,3.0,38,Snare
+21,4.0,37,Cross-stick
+22,1.0,42,Closed Hi-Hat
+22,2.0,46,Open Hi-Hat
+22,3.0,42,Closed Hi-Hat
+22,4.0,46,Open Hi-Hat
+23,1.0,50,High Tom
+23,2.0,51,Ride Cymbal
+23,3.0,53,Ride Bell
+23,4.0,50,High Tom
+24,1.0,52,China Cymbal
+24,2.0,57,Crash Cymbal 2
+24,3.0,52,China Cymbal
+24,4.0,57,Crash Cymbal 2
