@@ -6,7 +6,7 @@ MuseScore and REAPER are tested. Sibelius and Logic are not. Details of what was
 
 ## Results
 
-| Test | Notes carried exactly | What happened to the rest |
+| Test | Notes with the right MIDI note number | What happened to the rest |
 |---|---|---|
 | MuseScore MusicXML export, checked against the specification | 76 of 76 | n/a |
 | MuseScore MIDI export, checked against the intended notes | 76 of 76 | n/a |
@@ -14,7 +14,7 @@ MuseScore and REAPER are tested. Sibelius and Logic are not. Details of what was
 | MusicXML back into MuseScore, saved, reopened, MIDI exported | 76 of 76 | n/a |
 | Compressed `.mxl` back into MuseScore | 76 of 76 | n/a |
 | Control: same file with an `<instrument-sound>` added per drum | 76 of 76 | n/a |
-| **Control: same file with the per-note instrument references removed** | **0 of 76** | **All 76 played at the staff position read as a pitch** |
+| **Control: same file with the per-note instrument references removed** | **0 of 76** | **All 76 imported at the staff position read as a pitch** |
 | **REAPER 7.85: the unmodified MusicXML export** | **0 of 76** | **All 76 at the staff position read as a pitch, on channel 1** |
 | REAPER 7.85: the compressed `.mxl` | 0 of 76 | The same |
 | REAPER 7.85: control with `<instrument-sound>` added | 0 of 76 | The same |
@@ -31,9 +31,9 @@ The file was not validated against the MusicXML schema in this run; the schema f
 
 ## The failure, reproduced
 
-REAPER 7.85 imports the unmodified export with every note at its staff position read as a pitch. MuseScore's own importer does exactly the same once the instrument references are removed from the file. Both produce this table, note for note:
+REAPER 7.85 imports the unmodified export with every note at its staff position read as a pitch. MuseScore's own importer gives the same note numbers once the instrument references are removed from the file. Both produce this table, note for note:
 
-| Drum | Correct note | Played instead | On a General MIDI kit that is |
+| Drum | Correct note | Imported as | On a General MIDI kit that is |
 |---|---|---|---|
 | Bass Drum 2 | 35 | 64 | Low Conga |
 | Bass Drum | 36 | 65 | High Timbale |
@@ -56,36 +56,35 @@ Four pairs of different drums collapse onto one note: cross-stick and snare, clo
 
 ## REAPER 7.85
 
-- All 76 notes arrive at the right time and length. None has the right pitch.
-- Every pitch equals the note's `display-step` and `display-octave` read as if they were a pitch. REAPER does not follow the note's `<instrument>` reference to its `midi-unpitched` value.
+- All 76 notes arrive at the right time and with the notated length. None has the right MIDI note number.
+- Every note number equals the note's `display-step` and `display-octave` read as a pitch, not the referenced instrument's `midi-unpitched` value.
 - Adding `<instrument-sound>` changes nothing.
 - The notes land on channel 1 when the file has instrument references and on channel 10 when it has none. Why was not investigated.
 - The track is named "Drum Kit", from the part name.
-- The MIDI file exported from the same MuseScore score imports correctly: 76 of 76, channel 10. So the workaround in the issue (use MIDI) holds.
-- REAPER showed its "MIDI File Import" dialog for each file. The defaults were accepted unchanged.
+- The MIDI file exported from the same MuseScore score imports with all 76 note numbers right, on channel 10. So the workaround in the issue (use MIDI) holds.
+- Import dialogs, when shown, were accepted unchanged.
 
-This confirms, with numbers and on REAPER's current release, what the contributor concluded from reading the file in May 2024.
+This reproduces, with a new file, the pattern rettinghaus suspected in the issue in May 2024. The original reporter's file was not retested.
 
 ## Smaller findings
 
-1. **A notehead is lost in MuseScore's own round trip.** The China Cymbal uses a custom notehead. The export writes it as `<notehead smufl="noteheadHeavyXHat">other</notehead>`. After import and re-export it is `normal`. The sound is unaffected. Carried approximately. The same importer code is in v4.7.6 and on `main` (read on 2026-11-12, not run).
+1. **A notehead is lost in MuseScore's own round trip.** The China Cymbal uses a custom notehead. The export writes it as `<notehead smufl="noteheadHeavyXHat">other</notehead>`. After import and re-export it is `normal`. The note number is unaffected. The same importer code is in v4.7.6 and on `main` (read on 2026-11-12, not run).
 2. **`<instrument-sound>` made no difference to MuseScore's import** in this test, present or absent.
 3. Staff positions, stems and voices of all 16 drums came back unchanged in the round-trip MusicXML.
 
 ## Limits of this run
 
-- The notes were written into the score file by a script, on the kit's own default voices and stems, and not entered in the editor. The export code path is the same, but a hand-entered score is the stronger evidence for a public claim.
+- The notes were written into the score file by a script, on the kit's own default voices and stems, and not entered in the editor. MuseScore then exported it through its own code.
 - 16 drums, not the 23 of the large kit named in the issue.
 - The command line cannot show the known problem where sounds are wrong in the window until the score is saved and reopened (#20283). The two MIDI exports here agree, which says nothing about live playback.
 - One version of each program, one machine. REAPER was tested through its Insert Media route, driven by a script; File › Open and drag-and-drop were not tried.
 
-## Whose side, so far
+## Summary
 
 | Question | Answer from this run |
 |---|---|
-| Is MuseScore 4.6.5's drum export correct? | Yes, on every point checked. |
-| Does MuseScore read its own export correctly? | Yes for sound; one custom notehead is lost. |
-| What does REAPER 7.85 do with it? | Ignores the instrument reference and plays the staff position as a pitch. 0 of 76 correct. |
-| Whose side is the failure in #22702 on? | The importer's, on this evidence. The export gives the sound of every note in the way the specification's own percussion example does; REAPER does not read it. |
-| Is the specification partly to blame? | It never states the rule in one place, and a reader that falls back to staff position contradicts only the phrase that display position does not imply pitch. That is a reading of the specification, not something this run measured. |
+| Does MuseScore 4.6.5's export carry each drum's MIDI note as the specification describes? | Yes, for all 76 notes. The file was not schema-validated. |
+| Does MuseScore read its own export correctly? | All 76 note numbers survive; one custom notehead is lost. |
+| What does REAPER 7.85 do with it? | All 76 imported note numbers match the staff positions, not the referenced `midi-unpitched` values. 0 of 76 correct. |
+| Does this explain #22702? | It reproduces the pattern described there with a new file: the export follows the structure of the specification's percussion example, and REAPER imports staff positions instead. The original file was not retested. |
 | What do Sibelius and Logic do? | Not tested. |

@@ -1,12 +1,12 @@
-# Run 02: stage 1 repeated on MuseScore Studio 4.7.6
+# Run 02: repeated with MuseScore Studio 4.7.6
 
-Date: 2026-11-12. Same score, tools and answer key as run 01, run from MuseScore's command line. The method is in [run-01/METHOD.md](../run-01/METHOD.md); versions and machine are as in [run-01/manifest.md](../run-01/manifest.md) apart from MuseScore. 4.7.6 replaced 4.6.5 on this machine, so run 01 can no longer be repeated here; its files and hashes are kept.
+Date: 2026-11-12. Same score, tools and answer key as run 01, run from MuseScore's command line. The method is in [run-01/METHOD.md](../run-01/METHOD.md); versions and machine are as in [run-01/manifest.md](../run-01/manifest.md) apart from MuseScore. The installed version is now 4.7.6; run 01's files and hashes are kept.
 
 ## Result
 
 Identical to run 01 on every count.
 
-| Check | Notes correct |
+| Check | Correct MIDI note numbers |
 |---|---|
 | MusicXML export (unpitched, references resolve, channel 10, midi-unpitched = note + 1) | 76 of 76 |
 | MIDI export | 76 of 76 |
@@ -25,7 +25,7 @@ Identical to run 01 on every count.
 
 Rerun on 2026-11-12 with the run 01 protocol: `tools/reaper_import.lua` (the copy here differs from the one run only in how it finds its folder) passed to REAPER 7.85 (macOS arm64), one new project tab per file, Insert Media, import dialogs accepted unchanged, tabs closed without saving. Notes are in `results/reaper/*.csv`.
 
-| File | Notes correct | What happened |
+| File | Correct MIDI note numbers | What happened |
 |---|---|---|
 | MusicXML export, unmodified | 0 of 76 | Every note at its staff position read as a pitch, channel 1 |
 | Compressed `.mxl` | 0 of 76 | The same |
@@ -33,7 +33,7 @@ Rerun on 2026-11-12 with the run 01 protocol: `tools/reaper_import.lua` (the cop
 | Control with instrument references removed | 0 of 76 | The same notes, channel 10 |
 | MuseScore's MIDI export of the same score | 76 of 76 | Channel 10 |
 
-All five result files are byte-identical to run 01's. Timing and lengths are right in every case.
+All five result files are byte-identical to run 01's. Onsets are right in all five. The MusicXML imports also keep the notated lengths; the MIDI import's notes are about 0.002 quarter notes shorter (0.9979 for a quarter note) and have velocity 80, which may come from MuseScore's MIDI export (not checked).
 
 REAPER showed its "MIDI File Import" dialog four times for the five files: for the four MusicXML files and not for the MIDI file.
 

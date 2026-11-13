@@ -6,15 +6,15 @@ count of what arrived.
 
 A MusicXML drum note has two parts. One is where it sits on the staff. The other is
 which drum it is, given by the note's `<instrument>` reference, which points to a
-`<midi-unpitched>` number. A program that reads the staff position as a pitch plays the
-wrong drum on every note.
+`<midi-unpitched>` number. In this score, reading the staff position as a pitch gives the
+wrong MIDI note for all 76 notes.
 
 ## Results so far
 
 | Run | Programs | Result |
 |---|---|---|
-| [run-01](run-01/REPORT.md), 2026-11-11 | MuseScore Studio 4.6.5 → REAPER 7.85, macOS | MuseScore reads its own export correctly: 76 of 76 notes. REAPER gets 0 of 76 from MusicXML and 76 of 76 from the same score's MIDI export. REAPER plays every note at its staff position read as a pitch. |
-| [run-02](run-02/REPORT.md), 2026-11-12 | MuseScore Studio 4.7.6 → REAPER 7.85, macOS | The same on every count. MuseScore: 76 of 76. REAPER: 0 of 76 from MusicXML, 76 of 76 from MIDI. The 4.7.6 MusicXML export differs from the 4.6.5 one only in layout numbers; the MIDI export is byte-identical. |
+| [run-01](run-01/REPORT.md), 2026-11-11 | MuseScore Studio 4.6.5 → REAPER 7.85, macOS | MuseScore keeps all 76 MIDI note numbers when it re-imports its own export; one custom notehead is lost. REAPER gets 0 of 76 from MusicXML and 76 of 76 from the same score's MIDI export. REAPER imports every note at its staff position read as a pitch. |
+| [run-02](run-02/REPORT.md), 2026-11-12 | MuseScore Studio 4.7.6 → REAPER 7.85, macOS | The same on every count. MuseScore: 76 of 76. REAPER: 0 of 76 from MusicXML, 76 of 76 from MIDI. The drum mapping in the 4.7.6 MusicXML export is unchanged; it differs from the 4.6.5 one in layout, metadata and part-name visibility. The MIDI export is byte-identical. |
 
 Related: [musescore/MuseScore#22702](https://github.com/musescore/MuseScore/issues/22702).
 
@@ -31,7 +31,7 @@ Each run folder has:
 
 ## Adding a program
 
-Follow `METHOD.md` in the latest run: import the fixture unchanged, export MIDI straight
+Follow [run-01/METHOD.md](run-01/METHOD.md): import the fixture unchanged, export MIDI straight
 away, and run `tools/analyze.py` on it. Results from Sibelius, Logic, Dorico, Cubase and
 other programs are welcome, as an issue or a pull request. Give the program's version
 and say whether the import showed any options.

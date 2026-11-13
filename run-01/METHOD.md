@@ -23,7 +23,7 @@ Then, with `M="/Applications/MuseScore 4.app/Contents/MacOS/mscore"`, export eac
 python3 tools/analyze.py midi results/<program>/import.mid "<Program and version> import"
 ```
 
-It prints how many of the 76 notes arrived exactly, and for the rest, which note each drum became and whether that matches the staff-position signature, an off-by-one, or an octave shift. Rows are appended to `results/events.csv`.
+It prints how many of the 76 notes have the expected onset and MIDI note number, and for the rest, which note each drum became and whether that matches the staff-position signature, an off-by-one, or an octave shift. Rows are appended to `results/events.csv`.
 
 Folders are ready for `results/sibelius/` and `results/logic/`. For REAPER, also note its version and whether the import offered any options.
 
@@ -40,7 +40,7 @@ Close the tabs without saving.
 ## The two controls
 
 - `fixture/control-no-instrument-refs.musicxml`: per-note instrument references removed. Shows what a program falls back to.
-- `fixture/control-with-instrument-sound.musicxml`: a sound id added to each drum. Shows whether a program uses it.
+- `fixture/control-with-instrument-sound.musicxml`: a sound id added to each drum. Tests whether adding it changes the imported notes.
 
 ## Checking a MusicXML file
 
